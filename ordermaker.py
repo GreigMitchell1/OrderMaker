@@ -1,7 +1,15 @@
 from docx import Document
-from docx.shared import Inches
+from docx.shared import Inches, Pt
+from docx.enum.style import WD_STYLE_TYPE
 
 document = Document()
+
+style=document.styles.add_style('indent', WD_STYLE_TYPE.PARAGRAPH)
+paragraph_format = style.paragraph_format
+paragraph_format.left_indent = Inches(0.1)
+paragraph_format.first_line_indent = Inches(-0.25)
+paragraph_format.space_before = Pt(12)
+paragraph_format.window_control = True
 
 document.add_heading('Document Title', 00)
 
@@ -42,4 +50,4 @@ for qty, id, desc in records:
 
 document.add_page_break()
 
-document.save('ordertest.docx')
+document.save('ordertest2.docx')
